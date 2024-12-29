@@ -18,12 +18,18 @@ func _ready():
 	console_layer.visible = false
 	# Show/hide the prompt
 	prompt_layer.visible = show_prompt
+	# Set prompt text
+	$PromptLayer/Label.text = "Press %s to open/close the console." % InputMap.action_get_events("console")[0].as_text()
 	# Add commands
 	for child in commands_holder.get_children():
 		if child is Command:
 			ConsoleManager.add_command(child.command, child)
 
 func add_command(cmd_name: String, cmd: Command) -> void:
+	# Check for duplicates
+	if command_dict.has(cmd_name):
+		print("Command Name %s already has a command associated with it. Skipping." % cmd_name)
+		return
 	# Add command to dict
 	command_dict[cmd_name] = cmd
 
