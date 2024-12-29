@@ -38,7 +38,13 @@ Command nodes get added to the command dictionary on ready. I'd recommend saving
 
 ## Signals
 
-There is only 1 signal `on_console_close`, which gets emitted when the console is closed.
+### `on_console_open`
+
+Emitted when the console is opened. Connect to this to pause input for the player when the console is opened.
+
+### `on_console_close`
+
+Emitted when the console is closed. Connect to this to grab focus, or unpause input when the console is closed
 
 ## Prompt
 

@@ -1,5 +1,7 @@
 extends Node
 
+# Use this to pause input when the console is opened
+signal on_console_open
 # Use this to grab focus when the console is closed
 signal on_console_close
 
@@ -42,7 +44,8 @@ func toggle_visible() -> void:
 	# Toggle the visibility
 	console_layer.visible = !console_layer.visible
 	# Emit closed signal
-	if !console_layer.visible: on_console_close.emit()
+	if console_layer.visible: on_console_open.emit()
+	else: on_console_close.emit()
 
 func run_command(raw_command: String) -> void:
 	# Split the command
