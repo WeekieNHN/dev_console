@@ -12,6 +12,7 @@
 script = ExtResource("1_2p1ik")
 
 [node name="ConsoleCanvasLayer" type="CanvasLayer" parent="."]
+layer = 25
 
 [node name="Background" type="ColorRect" parent="ConsoleCanvasLayer"]
 anchors_preset = 15

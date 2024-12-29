@@ -15,6 +15,8 @@ func _ready():
 func submit_command_button() -> void:
 	# Save text
 	var raw_command = text_entry.text
+	# Only run commands, check for empty string
+	if raw_command == "": return
 	# Clear the text entry
 	text_entry.text = ""
 	# Send command to Singleton
