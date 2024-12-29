@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://buv4pxp6kq757"]
+
+[ext_resource type="Script" path="res://addons/dev_console/Commands/Help/help_command.gd" id="1_4dfjh"]
+
+[node name="Help" type="Node"]
+script = ExtResource("1_4dfjh")
+help_text = "Well... it seems like you already know how to use this command."
+help_text_short = "Prints list of commands and functions."

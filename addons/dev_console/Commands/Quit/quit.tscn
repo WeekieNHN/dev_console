@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3x22jmaq4fl6"]
+
+[ext_resource type="Script" path="res://addons/dev_console/Commands/Quit/quit_command.gd" id="1_p0u5p"]
+
+[node name="Quit" type="Node"]
+script = ExtResource("1_p0u5p")

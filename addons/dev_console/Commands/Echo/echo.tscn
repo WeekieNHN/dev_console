@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://neygdh4iwk68"]
+
+[ext_resource type="Script" path="res://addons/dev_console/Commands/Echo/echo_command.gd" id="1_qxtce"]
+
+[node name="Echo" type="Node"]
+script = ExtResource("1_qxtce")
+command = "echo"
+help_text_short = "Repeats [arg] text."

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://hyvd61h21pbk"]
+
+[ext_resource type="Script" path="res://addons/dev_console/Commands/Clear/clear_command.gd" id="1_lvfsc"]
+
+[node name="Clear" type="Node"]
+script = ExtResource("1_lvfsc")
+command = "clear"
+help_text = "Clears the console's output. Type `clear` to clear the output."
+help_text_short = "Clears the console's output."
