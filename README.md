@@ -1,5 +1,5 @@
 # GodotDevConsole
-A Simple Developer Console you can open with Shift + ` and run commands.
+A Simple Developer Console you can open and run commands.
 
 ## Installation/Setup
 
@@ -14,7 +14,7 @@ As long as the autoload is enabled it should work as you set up an input action.
 
 ### 3. Inputs
 
-Lastly, make sure you bind an input action in `Project->Project Settings->Input Map' for `console`. I recommend Shift + `.
+Lastly, make sure you bind an input action in ```Project->Project Settings->Input Map' for `console`. I recommend '~'```
 
 Now you should be able to launch any scene and be able to access the console using the bind you set.
 
