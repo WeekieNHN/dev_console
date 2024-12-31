@@ -4,7 +4,7 @@ A Simple Developer Console you can open and run commands.
 ## Installation/Setup
 
 ### 1. Adding the Plugin
-Add `addons/dev_console` to your addons folder, and then activate it in `Project->Project Settings->Plugins.  
+Add `addons/dev_console` to your addons folder, and then activate it in `Project->Project Settings->Plugins`.  
 
 ### 2. Autoloads
 
