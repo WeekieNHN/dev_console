@@ -18,7 +18,7 @@ func run_command(args: Array[String]) -> String:
 	# Grab our command dictionary
 	for key in ConsoleManager.command_dict:
 		var value: Command = ConsoleManager.command_dict[key] 
-		return_string += "%s - %s\n" % [key, value.help_text_short]
+		return_string += "[%s] %s - %s\n" % [value.group, key, value.help_text_short]
 	# Add ending message
 	return_string += "\nType `help [command]` for more information about a specific command.\n"
 	# Return the string

@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmqqsi3fjteq4"]
+
+[ext_resource type="Script" path="res://addons/dev_console/Commands/command_aggregator.gd" id="1_1ucmx"]
+[ext_resource type="PackedScene" uid="uid://buv4pxp6kq757" path="res://addons/dev_console/Commands/Help/help.tscn" id="2_cw4io"]
+[ext_resource type="PackedScene" uid="uid://neygdh4iwk68" path="res://addons/dev_console/Commands/Echo/echo.tscn" id="3_l32l7"]
+[ext_resource type="PackedScene" uid="uid://hyvd61h21pbk" path="res://addons/dev_console/Commands/Clear/clear.tscn" id="4_lkb7u"]
+[ext_resource type="PackedScene" uid="uid://b8w5gqiucjntu" path="res://addons/dev_console/Commands/Exit/exit.tscn" id="5_hd80c"]
+[ext_resource type="PackedScene" uid="uid://d3x22jmaq4fl6" path="res://addons/dev_console/Commands/Quit/quit.tscn" id="6_jswt1"]
+
+[node name="BaseCommands" type="Node"]
+script = ExtResource("1_1ucmx")
+
+[node name="Help" parent="." instance=ExtResource("2_cw4io")]
+help_text = "Well... it seems like you already know how to use this command. Help displays the list of available commands and what their functions are."
+
+[node name="Echo" parent="." instance=ExtResource("3_l32l7")]
+help_text = "Repeats whatever text inputted after `echo` back to the console."
+help_text_short = "Repeats <arg> text."
+
+[node name="Clear" parent="." instance=ExtResource("4_lkb7u")]
+
+[node name="Exit" parent="." instance=ExtResource("5_hd80c")]
+command = "exit"
+help_text = "Closes the console. Type 'exit' to return to preview menu or game."
+help_text_short = "Closes the console."
+
+[node name="Quit" parent="." instance=ExtResource("6_jswt1")]
+command = "quit"
+help_text = "Type 'quit' to close the application."
+help_text_short = "Closes the application."

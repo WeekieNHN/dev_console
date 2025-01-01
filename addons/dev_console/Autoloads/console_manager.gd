@@ -6,13 +6,15 @@ signal on_console_open
 signal on_console_close
 
 @export var show_prompt: bool = true
-@onready var prompt_layer: Control = $PromptLayer
 
+@onready var prompt_layer: Control = $PromptLayer
 @onready var console_layer: CanvasLayer = $ConsoleCanvasLayer
 @onready var dev_console: DevConsole = %DevConsole
-@onready var commands_holder: Node = %Commands
 
 var command_dict = {}
+
+var command_history: Array[String] = [] # Hold previous commands
+var command_history_index = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,12 +22,30 @@ func _ready():
 	console_layer.visible = false
 	# Show/hide the prompt
 	prompt_layer.visible = show_prompt
-	# Set prompt text
-	$PromptLayer/Label.text = "Press %s to open/close the console." % InputMap.action_get_events("console")[0].as_text()
-	# Add commands
-	for child in commands_holder.get_children():
-		if child is Command:
-			ConsoleManager.add_command(child.command, child)
+	
+	# Add console_inputs
+	if !InputMap.has_action("console_open"):
+		InputMap.add_action("console_open")
+		var console_open_key: InputEventKey = InputEventKey.new()
+		console_open_key.physical_keycode = KEY_QUOTELEFT
+		InputMap.action_add_event("console_open", console_open_key)
+	
+	# Add console_inputs
+	if !InputMap.has_action("console_up"):
+		InputMap.add_action("console_up")
+		var console_up_key: InputEventKey = InputEventKey.new()
+		console_up_key.physical_keycode = KEY_UP
+		InputMap.action_add_event("console_up", console_up_key)
+	
+	# Add console_inputs
+	if !InputMap.has_action("console_down"):
+		InputMap.add_action("console_down")
+		var console_down_key: InputEventKey = InputEventKey.new()
+		console_down_key.physical_keycode = KEY_DOWN
+		InputMap.action_add_event("console_down", console_down_key)
+	
+	# Set prompt text with console prompt
+	$PromptLayer/Label.text = "Press %s to open/close the console." % InputMap.action_get_events("console_open")[0].as_text()
 
 func add_command(cmd_name: String, cmd: Command) -> void:
 	# Check for duplicates
@@ -36,9 +56,31 @@ func add_command(cmd_name: String, cmd: Command) -> void:
 	command_dict[cmd_name] = cmd
 
 func _input(_event):
+	# Skip if no console open action
+	if !InputMap.has_action("console_open"): return
 	# Check if console input was pressed, if so, toggle
-	if Input.is_action_just_pressed("console"):
+	if Input.is_action_just_pressed("console_open"):
 		toggle_visible()
+	
+	# If Console open, Check if up/down inputs pressed
+	if console_layer.visible:
+		if Input.is_action_just_pressed("console_up"):
+			# Check if we can move up the history
+			if command_history_index < len(command_history) - 1:
+				# Increment command history index
+				command_history_index += 1
+				# Set the command text entry box text
+				dev_console.text_entry.text = command_history[command_history_index]
+		if Input.is_action_just_pressed("console_down"):
+			# Check if we can move down the history
+			if command_history_index > -1:
+				# Dencrement command history index
+				command_history_index -= 1
+				if command_history_index == -1:
+					dev_console.text_entry.text = ""
+				else:
+					dev_console.text_entry.text = command_history[command_history_index]
+			
 
 func toggle_visible() -> void:
 	# Toggle the visibility
@@ -48,6 +90,10 @@ func toggle_visible() -> void:
 	else: on_console_close.emit()
 
 func run_command(raw_command: String) -> void:
+	# Insert command in history (slot 0)
+	command_history.insert(0, raw_command)
+	# Reset the history index so we always start at the newest command
+	command_history_index = -1
 	# Split the command
 	var command_split = raw_command.split(' ', false)
 	# Identify Command

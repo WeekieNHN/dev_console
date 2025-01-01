@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxik2aq074jdx"]
+[gd_scene load_steps=6 format=3 uid="uid://dxik2aq074jdx"]
 
 [ext_resource type="Script" path="res://addons/dev_console/Autoloads/console_manager.gd" id="1_2p1ik"]
 [ext_resource type="Script" path="res://addons/dev_console/UI Scripts/dev_console.gd" id="2_kduqy"]
-[ext_resource type="PackedScene" uid="uid://buv4pxp6kq757" path="res://addons/dev_console/Commands/Help/help.tscn" id="3_3h6n7"]
-[ext_resource type="PackedScene" uid="uid://neygdh4iwk68" path="res://addons/dev_console/Commands/Echo/echo.tscn" id="4_ssltb"]
-[ext_resource type="PackedScene" uid="uid://hyvd61h21pbk" path="res://addons/dev_console/Commands/Clear/clear.tscn" id="5_6i0db"]
-[ext_resource type="PackedScene" uid="uid://b8w5gqiucjntu" path="res://addons/dev_console/Commands/Exit/exit.tscn" id="6_blhnl"]
-[ext_resource type="PackedScene" uid="uid://d3x22jmaq4fl6" path="res://addons/dev_console/Commands/Quit/quit.tscn" id="7_to7r3"]
+[ext_resource type="PackedScene" uid="uid://dmqqsi3fjteq4" path="res://addons/dev_console/Commands/base_commands.tscn" id="3_7dgpa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhlwf"]
+bg_color = Color(0.666667, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm472"]
+bg_color = Color(0.666667, 0, 0, 0.654902)
 
 [node name="ConsoleManager" type="Node"]
 script = ExtResource("1_2p1ik")
@@ -56,6 +58,39 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ConsoleCanvasLayer/DevConsole/MarginContainer/OuterPanel/MarginContainer"]
 layout_mode = 2
+
+[node name="Control" type="Control" parent="ConsoleCanvasLayer/DevConsole/MarginContainer/OuterPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConsoleCanvasLayer/DevConsole/MarginContainer/OuterPanel/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="ConsoleCanvasLayer/DevConsole/MarginContainer/OuterPanel/MarginContainer/VBoxContainer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ConsoleCanvasLayer/DevConsole/MarginContainer/OuterPanel/MarginContainer/VBoxContainer/Control/HBoxContainer/Panel"]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 1660.0
+offset_bottom = 27.0
+size_flags_horizontal = 3
+text = "Developer Console"
+
+[node name="CloseButton" type="Button" parent="ConsoleCanvasLayer/DevConsole/MarginContainer/OuterPanel/MarginContainer/VBoxContainer/Control/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_vhlwf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tm472")
+text = "X"
 
 [node name="CommandHistory" type="ScrollContainer" parent="ConsoleCanvasLayer/DevConsole/MarginContainer/OuterPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -131,24 +166,4 @@ offset_bottom = 64.0
 grow_horizontal = 2
 text = "Press Shift+` to open Console"
 
-[node name="Commands" type="Node" parent="."]
-unique_name_in_owner = true
-
-[node name="Help" parent="Commands" instance=ExtResource("3_3h6n7")]
-help_text = "Well... it seems like you already know how to use this command. Help displays the list of available commands and what their functions are."
-
-[node name="Echo" parent="Commands" instance=ExtResource("4_ssltb")]
-help_text = "Repeats whatever text inputted after `echo` back to the console."
-help_text_short = "Repeats <arg> text."
-
-[node name="Clear" parent="Commands" instance=ExtResource("5_6i0db")]
-
-[node name="Exit" parent="Commands" instance=ExtResource("6_blhnl")]
-command = "exit"
-help_text = "Closes the console. Type 'exit' to return to preview menu or game."
-help_text_short = "Closes the console."
-
-[node name="Quit" parent="Commands" instance=ExtResource("7_to7r3")]
-command = "quit"
-help_text = "Type 'quit' to close the application."
-help_text_short = "Closes the application."
+[node name="BaseCommands" parent="." instance=ExtResource("3_7dgpa")]
