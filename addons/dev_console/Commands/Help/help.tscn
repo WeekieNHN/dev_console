@@ -4,5 +4,5 @@
 
 [node name="Help" type="Node"]
 script = ExtResource("1_4dfjh")
-help_text = "Well... it seems like you already know how to use this command."
-help_text_short = "Prints list of commands and functions."
+help_text = "Well... it seems like you already know how to use this command. Help displays the list of available commands and what their functions are."
+help_text_short = "Prints list of commands and their functions."

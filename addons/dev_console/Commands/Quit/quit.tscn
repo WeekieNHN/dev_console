@@ -4,3 +4,6 @@
 
 [node name="Quit" type="Node"]
 script = ExtResource("1_p0u5p")
+command = "quit"
+help_text = "Type 'quit' to close the application."
+help_text_short = "Closes the application."

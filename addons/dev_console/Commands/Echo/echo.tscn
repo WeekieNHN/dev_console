@@ -5,4 +5,5 @@
 [node name="Echo" type="Node"]
 script = ExtResource("1_qxtce")
 command = "echo"
-help_text_short = "Repeats [arg] text."
+help_text = "Repeats whatever text is inputted after `echo` back to the console."
+help_text_short = "Repeats <arg> text."

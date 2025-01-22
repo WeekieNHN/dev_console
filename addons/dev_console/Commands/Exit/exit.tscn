@@ -4,3 +4,6 @@
 
 [node name="Exit" type="Node"]
 script = ExtResource("1_fk5a7")
+command = "exit"
+help_text = "Closes the console. Type 'exit' to return to preview menu or game."
+help_text_short = "Closes the console."

@@ -106,4 +106,4 @@ func run_command(raw_command: String) -> void:
 		dev_console.console_print_log(output_string)
 	# If unidentified, tell the user
 	else:
-		dev_console.console_print_log("Command `%s` not found\n" % command_split[0])
+		dev_console.console_print_log("Command `%s` not found, try command `help`.\n" % command_split[0])
