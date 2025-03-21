@@ -11,7 +11,7 @@ signal on_console_close
 @onready var console_layer: CanvasLayer = $ConsoleCanvasLayer
 @onready var dev_console: DevConsole = %DevConsole
 
-var command_dict = {}
+var command_dict: Dictionary[String, Command] = {}
 
 var command_history: Array[String] = [] # Hold previous commands
 var command_history_index = -1

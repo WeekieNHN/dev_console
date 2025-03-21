@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dxik2aq074jdx"]
 
-[ext_resource type="Script" path="res://addons/dev_console/Autoloads/console_manager.gd" id="1_2p1ik"]
-[ext_resource type="Script" path="res://addons/dev_console/UI Scripts/dev_console.gd" id="2_kduqy"]
+[ext_resource type="Script" uid="uid://gb32dn3vwoum" path="res://addons/dev_console/Autoloads/console_manager.gd" id="1_2p1ik"]
+[ext_resource type="Script" uid="uid://c3rgup63jpp61" path="res://addons/dev_console/UI Scripts/dev_console.gd" id="2_kduqy"]
 [ext_resource type="PackedScene" uid="uid://dmqqsi3fjteq4" path="res://addons/dev_console/Commands/base_commands.tscn" id="3_7dgpa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhlwf"]
