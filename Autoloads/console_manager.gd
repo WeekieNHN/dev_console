@@ -5,6 +5,9 @@ signal on_console_open
 # Use this to grab focus when the console is closed
 signal on_console_close
 
+var on_phrases: Array[String] = ["On", "on", "Yes", "yes", "y", "1", "true", "True"]
+var off_phrases: Array[String] = ["Off", "off", "No", "no", "n", "0", "false", "False"]
+
 @export var show_prompt: bool = true
 
 @onready var prompt_layer: Control = $PromptLayer
@@ -81,7 +84,6 @@ func _input(_event):
 				else:
 					dev_console.text_entry.text = command_history[command_history_index]
 			
-
 func toggle_visible() -> void:
 	# Toggle the visibility
 	console_layer.visible = !console_layer.visible
@@ -107,3 +109,11 @@ func run_command(raw_command: String) -> void:
 	# If unidentified, tell the user
 	else:
 		dev_console.console_print_log("Command `%s` not found, try command `help`.\n" % command_split[0])
+
+func convert_string_arg_to_bool(arg: String) -> bool:
+	if arg in on_phrases:
+		return true
+	elif arg in off_phrases:
+		return false
+	else:
+		return false
