@@ -19,6 +19,8 @@ var command_dict: Dictionary[String, Command] = {}
 var command_history: Array[String] = [] # Hold previous commands
 var command_history_index = -1
 
+func is_console_open() -> bool: return console_layer.visible
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Hide the console
